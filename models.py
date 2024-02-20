@@ -26,7 +26,7 @@ class NoteSchema(ma.SQLAlchemyAutoSchema):
 class Person(db.Model):
     __tablename__ = "person"
     id = db.Column(db.Integer, primary_key=True)
-    lname = db.Column(db.String(32), unique=True)
+    lname = db.Column(db.String(32), nullable=False)
     fname = db.Column(db.String(32))
     timestamp = db.Column(
         db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow
@@ -38,8 +38,6 @@ class Person(db.Model):
         single_parent=True,
         order_by="desc(Note.timestamp)",
     )
-
-
 
 
 class PersonSchema(ma.SQLAlchemyAutoSchema):
